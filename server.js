@@ -12,6 +12,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/data', async (req, res) => {
+  console.log(`/data requested from ${req.headers['x-forwarded-for'] || req.socket.remoteAddress}`);
   try {
     const response = await fetch(`${PLUMBER_URL}/data`);
     const data = await response.json();
@@ -22,6 +23,7 @@ app.get('/data', async (req, res) => {
 });
 
 app.get('/givenergy', async (req, res) => {
+  console.log(`/givenergy requested from ${req.headers['x-forwarded-for'] || req.socket.remoteAddress}`);
   try {
     const response = await fetch(`${PLUMBER_URL}/givenergy`);
     const data = await response.json();
